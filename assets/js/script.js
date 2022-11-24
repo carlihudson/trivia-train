@@ -1,8 +1,34 @@
+var letsPlayBtn = document.getElementById("lets-play")
+var landingPage = document.getElementById("landing")
+var questionPage = document.getElementById("question")
 // slide 1 notes -- 
     // query selector for "Pick a Category" textbox (Carli 1)
-        // add auto-complete function to above textbox (Carli 1)
-    //query selector for "Let's Play!" button
-        // event listener for "Let's Play!" button 
+        $( function() {
+            var categories = [
+                "Art & Literature",
+                "Language",
+                "Science & Nature",
+                "General",
+                "Food & Drink",
+                "People & Places",
+                "Geography",
+                "History & Holidays",
+                "Entertainment",
+                "Toys & Games",
+                "Music",
+                "Math",
+                "Religion & Mythology",
+                "Sports & Leisure"
+
+            ];
+            $( "#search-bar" ).autocomplete({
+                source: categories
+        });
+    });
+    letsPlayBtn.addEventListener("click", function(){
+landingPage.classList.add("hidden")
+questionPage.classList.remove("hidden")
+    })
 
 // slide 2 notes -- (Josh 1)
     // fetch random facts API 
