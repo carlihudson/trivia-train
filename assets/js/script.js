@@ -134,6 +134,16 @@ revealAnswer.on("click", function () {
   answer.text(generateAnswer);
 });
 
+$("#chooseNewCategoryBtn").on("click", function () {
+  selectedCategory.text("").focus();
+
+  landingPage.removeClass("hidden");
+  answer.addClass("hidden");
+  revealAnswer.addClass("hidden");
+  gifContainer.addClass("hidden");
+  navButtons.addClass("hidden");
+});
+
 // slide 2 notes -- (Josh 1)
 // fetch random facts API
 // create array for generated question
