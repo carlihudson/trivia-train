@@ -25,10 +25,12 @@
                 <div class="input-group relative flex items-stretch w-full mb-4">
                     <form id="search-form">
                     <input type="text" id="search-bar"
-                        class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border 
+                        border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         placeholder="Type a Category" aria-label="Search" aria-describedby="lets-play"/>
                     <button
-                        class="btn inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        class="btn inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded 
+                        hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                         type="button" id="lets-play">Let's Play!</button>
                     </form>
                 </div>
@@ -89,26 +91,27 @@
                             generated question
                         </p>
                     </div>
-                    <div id="answer" class="hidden py-3 px-6 border-t border-gray-300 text-gray-700">
+                    <p id="answer" class="hidden py-3 px-6 border-t border-gray-300 text-gray-700">
                         answer will go here
-                    </div>
+                    </p>
                 </div>
             </div>
         </div>
         <div class="flex space-x-2 justify-center">
             <div>
                 <button type="button" id="reveal-answer"
-                    class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Reveal
+                    class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black 
+                    hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Reveal
                     Answer</button>
             </div>
             <div id="gif-container" class="hidden">
                 <!-- generated gif will go here -->
             </div>
             <div class="flex hidden" id="nav-buttons">
-                <button type="button"
+                <button id="playAgainBtn" type="button"
                     class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Play
                     Again (Same Category)</button>
-                <button type="button"
+                <button id="chooseNewCategoryBtn" type="button"
                     class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                     href="#landing">Choose a New Category</button>
             </div>
