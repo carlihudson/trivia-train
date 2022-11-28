@@ -9,6 +9,8 @@ var revealAnswer = $("#reveal-answer")
 var answer = $("#answer")
 var gifContainer = $("#gif-container")
 var navButtons = $("#nav-buttons")
+var playAgainElm = $('#play-again')
+var newCategoryElm = $('#new-category')
 
 // autocomplete function
 $( function() {
@@ -90,7 +92,7 @@ var handleFormSubmit = function (event) {
   $(selectedCategory).text(userChoice)
 
   if (!userChoice) {
-    // add the little red text saying you much
+    // add the little red text saying you must select a category
     console.log('You must select from the given categories');
     return;
   }
@@ -107,9 +109,6 @@ function generateQuestion() {
           }
     }
 
-
-
-
     
 function fetchCategory(apiCategories) {
     var apiUrl = 'https://api.api-ninjas.com/v1/trivia?category=' + humanCategoryToApiCategoryMap[apiCategories]
@@ -124,7 +123,6 @@ function fetchCategory(apiCategories) {
         console.log(data)
         
     } )
-
     
 
 }
@@ -145,23 +143,32 @@ revealAnswer.on("click", function(){
     navButtons.removeClass("hidden")
         })
 
+playAgainElm.on("click", function(){
+    fetchCategory
+    // need to figure out how to make it load a new question
+    answer.addClass("hidden")
+    revealAnswer.removeClass("hidden")
+    gifContainer.addClass("hidden")
+    navButtons.addClass("hidden")
+                })
+
+newCategoryElm.on("click", function(){
+    location.reload(true);
+                })
+
 
     
 
 // slide 2 notes -- (Josh 1)
-    // fetch random facts API 
     // create array for generated question
-        // query selector for generated questions
 
 // slide 3 notes --
     // fetch GIPHY API (Ameera 1)
         // query selector for answer related GIPHY??? (Ameera 1)
     // create array for generated answer (Eduardo 1)
         // query selector for generated answer (Eduardo 1)
-    // query selector for "Play Again (Same Category)" button (Mab 1)
-        // event listener for "Play Again (Same Category)" button (Mab 1)
-    // query selector for "Play Again (New Category)" button (Mab 1)
-        // event listener for "Play Again (New Category)" button (Mab 1)
+  
+
     
 
 
