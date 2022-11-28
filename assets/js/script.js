@@ -37,8 +37,8 @@ $( function() {
     });
 
 var userChoice = searchBar.val() 
-console.log(userChoice)
 
+// categories written in syntax the api can read
 var apiCategories = [
     "artliterature",
     "language",
@@ -87,7 +87,6 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   userChoice = searchBar.val() 
-  console.log(userChoice)
 
   $(selectedCategory).text(userChoice)
 
@@ -107,6 +106,9 @@ function generateQuestion() {
         fetchCategory(apiCategories[i]) 
             
           }
+
+        localStorage.setItem('category', userChoice)
+        // the selected category goes away each time I redo, is that normal?
     }
 
     
@@ -121,9 +123,13 @@ function fetchCategory(apiCategories) {
         return response.json()
     }) .then(function(data){
         console.log(data)
+        // need to figure out why this console logs a blank array 14 times and how to make it stop
+
+        // need to figure out how to append data to the dom
+            // generatedQuestion.textContent = data[0].question; does not work 
+                // says "question" is undefined
         
     } )
-    
 
 }
 
@@ -166,7 +172,7 @@ newCategoryElm.on("click", function(){
     // fetch GIPHY API (Ameera 1)
         // query selector for answer related GIPHY??? (Ameera 1)
     // create array for generated answer (Eduardo 1)
-        // query selector for generated answer (Eduardo 1)
+
   
 
     
