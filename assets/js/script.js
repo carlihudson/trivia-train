@@ -9,6 +9,8 @@ var revealAnswer = $("#reveal-answer")
 var answer = $("#answer")
 var gifContainer = $("#gif-container")
 var navButtons = $("#nav-buttons")
+var playAgainElm = $('#play-again')
+var newCategoryElm = $('#new-category')
 
 // autocomplete function
 $( function() {
@@ -35,8 +37,8 @@ $( function() {
     });
 
 var userChoice = searchBar.val() 
-console.log(userChoice)
 
+// categories written in syntax the api can read
 var apiCategories = [
     "artliterature",
     "language",
@@ -85,12 +87,11 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   userChoice = searchBar.val() 
-  console.log(userChoice)
 
   $(selectedCategory).text(userChoice)
 
   if (!userChoice) {
-    // add the little red text saying you much
+    // add the little red text saying you must select a category
     console.log('You must select from the given categories');
     return;
   }
@@ -105,10 +106,10 @@ function generateQuestion() {
         fetchCategory(apiCategories[i]) 
             
           }
+
+        localStorage.setItem('category', userChoice)
+        // the selected category goes away each time I redo, is that normal?
     }
-
-
-
 
     
 function fetchCategory(apiCategories) {
@@ -122,10 +123,13 @@ function fetchCategory(apiCategories) {
         return response.json()
     }) .then(function(data){
         console.log(data)
+        // need to figure out why this console logs a blank array 14 times and how to make it stop
+
+        // need to figure out how to append data to the dom
+            // generatedQuestion.textContent = data[0].question; does not work 
+                // says "question" is undefined
         
     } )
-
-    
 
 }
 
@@ -145,23 +149,32 @@ revealAnswer.on("click", function(){
     navButtons.removeClass("hidden")
         })
 
+playAgainElm.on("click", function(){
+    fetchCategory
+    // need to figure out how to make it load a new question
+    answer.addClass("hidden")
+    revealAnswer.removeClass("hidden")
+    gifContainer.addClass("hidden")
+    navButtons.addClass("hidden")
+                })
+
+newCategoryElm.on("click", function(){
+    location.reload(true);
+                })
+
 
     
 
 // slide 2 notes -- (Josh 1)
-    // fetch random facts API 
     // create array for generated question
-        // query selector for generated questions
 
 // slide 3 notes --
     // fetch GIPHY API (Ameera 1)
         // query selector for answer related GIPHY??? (Ameera 1)
     // create array for generated answer (Eduardo 1)
-        // query selector for generated answer (Eduardo 1)
-    // query selector for "Play Again (Same Category)" button (Mab 1)
-        // event listener for "Play Again (Same Category)" button (Mab 1)
-    // query selector for "Play Again (New Category)" button (Mab 1)
-        // event listener for "Play Again (New Category)" button (Mab 1)
+
+  
+
     
 
 
