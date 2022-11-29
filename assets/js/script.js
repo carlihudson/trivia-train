@@ -12,8 +12,8 @@ var navButtons = $("#nav-buttons")
 var playAgainElm = $('#play-again')
 var newCategoryElm = $('#new-category')
 
-// autocomplete function
-$( function() {
+  // autocomplete function
+$(function () {
     var categories = [
         "Art & Literature",
         "Language",
@@ -30,152 +30,115 @@ $( function() {
         "Religion & Mythology",
         "Sports & Leisure"
 
-        ];
-        $( "#search-bar" ).autocomplete({
-            source: categories
-        });
+    ];
+    $("#search-bar").autocomplete({
+        source: categories
     });
+});
 
-var userChoice = searchBar.val() 
 
-// categories written in syntax the api can read
-var apiCategories = [
-    "artliterature",
-    "language",
-    "sciencenature",
-    "general",
-    "fooddrink",
-    "peopleplaces",
-    "geography",
-    "historyholidays",
-    "entertainment",
-    "toysgames",
-    "music",
-    "mathematics",
-    "religionmythology",
-    "sportsleisure"
+// object with category name api reads and value user sees
+var categories = [
+    { name: "artliterature", value: 'Art & Literature' },
+    { name: 'language', value: 'Language' },
+    { name: 'sciencenature', value: 'Science & Nature' },
+    { name: 'general', value: 'General' },
+    { name: 'fooddrink', value: 'Food & Drink' },
+    { name: 'peopleplaces', value: 'People & Places' },
+    { name: 'geography', value: 'Geography' },
+    { name: 'historyholidays', value: 'History & Holidays' },
+    { name: 'entertainment', value: 'Entertainment' },
+    { name: 'toysgames', value: 'Toys & Games' },
+    { name: 'music', value: 'Music' },
+    { name: 'mathematics', value: 'Math' },
+    { name: 'religionmythology', value: 'Religion & Mythology' },
+    { name: 'sportsleisure', value: 'Sports & Leisure' },
+
 ]
 
-var humanCategoryToApiCategoryMap = {
-    "Art & Literature": "artliterature",
-    "Language": "language",
-    "Science & Nature": "sciencenature",
-    "General": "general",
-    "Food & Drink": "fooddrink",
-    "People & Places": "peopleplaces",
-    "Geography": "geography",
-    "History & Holidays": "historyholidays",
-    "Entertainment": "entertainment",
-    "Toys & Games": "toysgames",
-    "Music": "music",
-    "Math": "mathematics",
-    "Religion & Mythology": "religionmythology",
-    "Sports & Leisure": "sportsleisure"
-}
-
-// If you need all the keys (e.g. the human readable names)
-  // Then you can do this `var categories = Object.keys(humanCategoryToApiCategoryMap)`
-
-// If you need all the values (e.g. the api names)
-  // Then you can do this `var categories = Object.values(humanCategoryToApiCategoryMap)`
-
-var userChoice = ''
-
-searchForm.on('click', generateQuestion)
 
 var handleFormSubmit = function (event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  userChoice = searchBar.val() 
+    var userChoice = searchBar.val()
 
-  $(selectedCategory).text(userChoice)
-
-  if (!userChoice) {
-    // add the little red text saying you must select a category
-    console.log('You must select from the given categories');
-    return;
-  }
+    if (userChoice) {
+        generateQuestion(userChoice)
+        landingPage.addClass("hidden")
+        questionPage.removeClass("hidden")
+        $(selectedCategory).text(userChoice)
+    } else {
+        // add the little red text saying you must select a category
+        console.log('You must select from the given categories');
+        return;
+    }
 
 };
 
-letsPlayBtn.on('click', handleFormSubmit);
 
-function generateQuestion() {
-    for(var i = 0; i < apiCategories.length; i++){
-        if(apiCategories[i].match(userChoice))
-        fetchCategory(apiCategories[i]) 
-            
-          }
+function generateQuestion(userChoice) {
+    const categoryName = categories.find(o => o.value === userChoice);
 
-        localStorage.setItem('category', userChoice)
-        // the selected category goes away each time I redo, is that normal?
+    if (categoryName) {
+        fetchCategory(categoryName)
     }
+   
+    localStorage.setItem('category', userChoice)
+}
 
-    
-function fetchCategory(apiCategories) {
-    var apiUrl = 'https://api.api-ninjas.com/v1/trivia?category=' + humanCategoryToApiCategoryMap[apiCategories]
+function fetchCategory(category) {
+
+    console.log(category)
+    var apiUrl = 'https://api.api-ninjas.com/v1/trivia?category=' + category.name
     var key = "D9pwikBVMORkil2A1lVj3A==sOYASMS2c1pikHtG"
-        
+
     fetch(apiUrl, {
         contentType: 'application/json',
-         headers: { 'X-Api-Key': key}
-    }).then(function(response) {
+        headers: { 'X-Api-Key': key }
+    }).then(function (response) {
         return response.json()
-    }) .then(function(data){
-        console.log(data)
-        // need to figure out why this console logs a blank array 14 times and how to make it stop
+    }).then(function (data) {
+        console.log("data", data[0].question)
+        generatedQuestion.append(data[0].question)
+        answer.append(data[0].answer)
 
-        // need to figure out how to append data to the dom
-            // generatedQuestion.textContent = data[0].question; does not work 
-                // says "question" is undefined
-        
-    } )
+    })
 
 }
 
+letsPlayBtn.on('click', handleFormSubmit);
 
-
-letsPlayBtn.on("click", function(){
-    landingPage.addClass("hidden")
-    questionPage.removeClass("hidden")
-    $(selectedCategory).text(userChoice)
-    fetchCategory(userChoice)
-    })
-
-revealAnswer.on("click", function(){
+revealAnswer.on("click", function () {
     answer.removeClass("hidden")
     revealAnswer.addClass("hidden")
     gifContainer.removeClass("hidden")
     navButtons.removeClass("hidden")
-        })
+})
 
-playAgainElm.on("click", function(){
+playAgainElm.on("click", function () {
     fetchCategory
     // need to figure out how to make it load a new question
+
     answer.addClass("hidden")
     revealAnswer.removeClass("hidden")
     gifContainer.addClass("hidden")
     navButtons.addClass("hidden")
-                })
+})
 
-newCategoryElm.on("click", function(){
+newCategoryElm.on("click", function () {
     location.reload(true);
-                })
+})
 
 
-    
-
-// slide 2 notes -- (Josh 1)
-    // create array for generated question
 
 // slide 3 notes --
     // fetch GIPHY API (Ameera 1)
-        // query selector for answer related GIPHY??? (Ameera 1)
-    // create array for generated answer (Eduardo 1)
 
-  
 
-    
+
+
+
+
 
 
 
