@@ -10,7 +10,6 @@ var answer = $("#answer")
 var gifContainer = $("#gif-container")
 var navButtons = $("#nav-buttons")
 var playAgainElm = $('#play-again')
-var newCategoryElm = $('#new-category')
 
   // autocomplete function
 $(function () {
@@ -56,7 +55,7 @@ var categories = [
 
 ]
 
-
+// function generating chosen category by user
 var handleFormSubmit = function (event) {
     event.preventDefault();
 
@@ -98,11 +97,24 @@ function fetchCategory(category) {
     }).then(function (response) {
         return response.json()
     }).then(function (data) {
-        console.log("data", data[0].question)
+        console.log(data[0].question)
         generatedQuestion.append(data[0].question)
         answer.append(data[0].answer)
 
+        var chosenAnswer = data[0].answer
+        var giphyKey = '4Qm6ORBCtnxfvBKUgW4FuArQT20lhhbw'
+        var giphyAPI = `https://api.giphy.com/v1/gifs/search?api_key=${giphyKey}&q=${chosenAnswer}&limit=1`
+
+        fetch(giphyAPI)
+            .then(function (response) {
+            return response.json()
+        }).then(function (data) {
+              $("#gif-container").append(`<img src="${data.data[0].images.original.url}" />`);
+        })
+
     })
+
+   
 
 }
 
@@ -116,23 +128,10 @@ revealAnswer.on("click", function () {
 })
 
 playAgainElm.on("click", function () {
-    fetchCategory
-    // need to figure out how to make it load a new question
-
-    answer.addClass("hidden")
-    revealAnswer.removeClass("hidden")
-    gifContainer.addClass("hidden")
-    navButtons.addClass("hidden")
-})
-
-newCategoryElm.on("click", function () {
     location.reload(true);
 })
 
 
-
-// slide 3 notes --
-    // fetch GIPHY API (Ameera 1)
 
 
 
