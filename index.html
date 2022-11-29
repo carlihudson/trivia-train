@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Trivia Train</title>
-
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href='./assets/css/style.css'>
 
 </head>
 
 <body>
 
     <header>
-        <div class="text-center bg-gray-50 text-gray-800 py-10 px-6">
+        <div class="text-center py-10 px-6">
             <h1 class="text-5xl font-bold mt-0 mb-6">Trivia Train</h1>
         </div>
     </header>
@@ -57,7 +59,7 @@
         <div class="flex basis-2/3 flex-wrap justify-center">
 
             <h2 class="text-center w-full text-3xl mt-3 mb-3">Welcome to the Trivia Train!</h2>
-            <div class="w-full text-center">
+            <div class="w-full text-center ml-10 mr-10 text-xl">
                 <p> Hop on board the Trivia Train! Trivia Train is a fun trivia game to play solo or with friends and family. 
                     You simply select a category from the list provided and hit the "Let's Play" button,
                      which generates a trivia question within that category. Hit the "Reveal Answer"
@@ -100,7 +102,7 @@
             </div>
             <div class="flex hidden mt-4" id="nav-buttons">
                 <button type="button"
-                    id="play-again" class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    id="play-again" class="mb-5 inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                     >Play Again</button>
             </div>
         </div>
