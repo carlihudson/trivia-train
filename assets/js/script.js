@@ -1,3 +1,4 @@
+// global variables 
 var searchForm = $('#search-form')
 var searchBar = $('#search-bar')
 var letsPlayBtn = $("#lets-play")
@@ -67,14 +68,13 @@ var handleFormSubmit = function (event) {
         questionPage.removeClass("hidden")
         $(selectedCategory).text(userChoice)
     } else {
-        // add the little red text saying you must select a category
-        console.log('You must select from the given categories');
         return;
     }
 
 };
 
 
+// function that translates user selected category into category that api can read
 function generateQuestion(userChoice) {
     const categoryName = categories.find(o => o.value === userChoice);
 
@@ -82,12 +82,13 @@ function generateQuestion(userChoice) {
         fetchCategory(categoryName)
     }
    
+    // saves chosen category to client storage
     localStorage.setItem('category', userChoice)
 }
 
+// funciton that fetches apis to generate a question, answer, and related gif based on chosen category
 function fetchCategory(category) {
 
-    console.log(category)
     var apiUrl = 'https://api.api-ninjas.com/v1/trivia?category=' + category.name
     var key = "D9pwikBVMORkil2A1lVj3A==sOYASMS2c1pikHtG"
 
@@ -118,6 +119,7 @@ function fetchCategory(category) {
 
 }
 
+// event listeners
 letsPlayBtn.on('click', handleFormSubmit);
 
 revealAnswer.on("click", function () {
@@ -130,29 +132,3 @@ revealAnswer.on("click", function () {
 playAgainElm.on("click", function () {
     location.reload(true);
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
