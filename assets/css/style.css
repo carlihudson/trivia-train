@@ -1,4 +1,4 @@
-header {
+header  {
     font-family: 'Shrikhand', cursive;
     background-color: lightblue;
     color: navy;
@@ -7,4 +7,18 @@ header {
 h2 {
     font-family: 'Shrikhand', cursive; 
     color: navy;
+}
+
+.brain {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    font-family: 'Shrikhand', cursive;
+    color: navy;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+
 }
