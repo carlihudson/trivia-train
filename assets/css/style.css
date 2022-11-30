@@ -35,7 +35,7 @@ footer {
 
 /* Media Query */
 
-@media screen and (width<= 1190px) {
+@media screen and (width<= 1187px) {
     #landing {
         justify-content: center;
         
