@@ -8,10 +8,10 @@ Trivia Train is a fun trivia game to play solo or with friends and family. You s
 * jQuery
 * Google Fonts
 
-## Screenshots (add when finished)
+## Screenshots 
 ![image](https://user-images.githubusercontent.com/114899256/204707659-6d631732-0337-41c1-aabf-570794076e4b.png)
 
 ![image](https://user-images.githubusercontent.com/114899256/204707722-0493f0c7-9a2a-451f-b1ae-e1da3ea8ee1a.png)
 
-## Link to Deployed Application (add when finished)
+## Link to Deployed Application 
 * https://carlihudson.github.io/trivia-train/
